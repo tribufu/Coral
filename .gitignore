@@ -25,3 +25,11 @@ cmake-build-*
 Makefile
 
 *.code-workspace
+
+# Premake files
+.cxx/
+*.xcodeproj
+AndroidManifest.xml
+build.gradle
+CMakeLists.txt
+google-services.json

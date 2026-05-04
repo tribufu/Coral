@@ -1,15 +1,17 @@
+--- @diagnostic disable: undefined-global, undefined-field, lowercase-global
+
 workspace "CoralManaged"
     configurations { "Debug", "Release" }
 
     targetdir "%{wks.location}/Build/%{cfg.buildcfg}"
-	objdir "%{wks.location}/Intermediates/%{cfg.buildcfg}"
+    objdir "%{wks.location}/Intermediates/%{cfg.buildcfg}"
 
 include "Coral.Managed"
 
 group "Tests"
-	include "Tests/Testing.Managed"
+    include "Tests/Testing.Managed"
 group ""
 
 group "Example"
-	include "Example/Example.Managed"
+    include "Example/Example.Managed"
 group ""

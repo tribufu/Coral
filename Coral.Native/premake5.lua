@@ -1,16 +1,21 @@
+--- @diagnostic disable: undefined-global, undefined-field, lowercase-global
+
 include "../Premake/DebuggerTypeExtension.lua"
 
 project "Coral.Native"
+    location "."
     language "C++"
     cppdialect "C++17"
     kind "StaticLib"
-    staticruntime "Off"
+    --staticruntime "Off"
     debuggertype "NativeWithManagedCore"
 
-	dependson "Coral.Managed"
+    removeplatforms { "Any CPU" }
 
-	targetdir("../Build/%{cfg.buildcfg}")
-	objdir("../Intermediates/%{cfg.buildcfg}")
+    --dependson "Coral.Managed"
+
+    targetdir("../Build/%{cfg.buildcfg}")
+    objdir("../Intermediates/%{cfg.buildcfg}")
 
     pchheader "CoralPCH.hpp"
     pchsource "Source/CoralPCH.cpp"
@@ -42,10 +47,13 @@ project "Coral.Native"
         optimize "On"
     filter { }
 
-	filter { "system:windows" }
-		defines { "CORAL_WINDOWS" }
+    filter { "system:windows" }
+        defines { "CORAL_WINDOWS" }
     filter { }
 
-	filter { "system:macosx" }
-		defines { "CORAL_MACOSX" }
+    filter { "system:macosx" }
+        defines { "CORAL_MACOSX" }
     filter { }
+
+    filter { "system:android" }
+        androidnamespace "com.tribufu.alnilam.vendor.coral"
